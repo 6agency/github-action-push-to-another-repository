@@ -87,11 +87,11 @@ then
 	cat < "$DO_NOT_DELETE_LIST_FILE" | while read -r line; do # 'line' is the variable name
     if [ -n "$line" ]
     then
-      if [ -f "$CLONE_DIR/$FILE_PATH_TO_PRESERVE" ]
+      if [ -f "$CLONE_DIR/$line" ]
       then
-        cp -ra "$CLONE_DIR/$FILE_PATH_TO_PRESERVE" "$TEMP_DIR/$FILE_PATH_TO_PRESERVE"
+        cp -ra "$CLONE_DIR/$line" "$TEMP_DIR/$line"
       else
-        echo "[+] Warning: preserve file $FILE_PATH_TO_PRESERVE Not found within cloned dir, skipping ahead"
+        echo "[+] Warning: preserve file $line Not found within cloned dir, skipping ahead"
       fi
     fi
   done
@@ -118,10 +118,10 @@ then
 	cat < "$DO_NOT_DELETE_LIST_FILE" | while read -r line; do # 'line' is the variable name
     if [ -n "$line" ]
     then
-      if [ -f "$TEMP_DIR/$FILE_PATH_TO_PRESERVE" ]
+      if [ -f "$TEMP_DIR/$line" ]
       then
-        echo "[+] Copying $FILE_PATH_TO_PRESERVE to TMP"
-        cp -ra "$TEMP_DIR/$FILE_PATH_TO_PRESERVE" "$CLONE_DIR/$FILE_PATH_TO_PRESERVE"
+        echo "[+] Copying $line to TMP"
+        cp -ra "$TEMP_DIR/$line" "$CLONE_DIR/$line"
       fi
     fi
   done
