@@ -90,6 +90,7 @@ then
       if [ -f "$CLONE_DIR/$line" ]
       then
         cp -ra "$CLONE_DIR/$line" "$TEMP_DIR/$line"
+        echo "[+] Preserve file $line located, and copied to tmp dir"
       else
         echo "[+] Warning: preserve file $line Not found within cloned dir, skipping ahead"
       fi
