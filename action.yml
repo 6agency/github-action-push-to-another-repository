@@ -52,6 +52,13 @@ inputs:
     description: '[Optional] File path to a txt file containing each relative path that should be copied from the cloned dir, meaning its not wiped'
     required: false
     default: ''
+  create-target-branch-if-needed:
+    type: boolean
+    description: >-
+      [Optional] create target branch if not exist. Defaults to `false`
+    default: false
+    required: false
+
 runs:
   using: docker
   image: Dockerfile
@@ -68,6 +75,7 @@ runs:
     - '${{ inputs.commit-message }}'
     - '${{ inputs.target-directory }}'
     - '${{ inputs.do-not-delete-list-file }}'
+    - '${{ inputs.create-target-branch-if-needed }}'
 branding:
   icon: git-commit
   color: green
