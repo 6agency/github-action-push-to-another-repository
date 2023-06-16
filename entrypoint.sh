@@ -87,7 +87,7 @@ then
 	cat < "$DO_NOT_DELETE_LIST_FILE" | while read -r line; do # 'line' is the variable name
     if [ -n "$line" ]
     then
-      if [ -f "$CLONE_DIR/$line" ]
+      if [ -e "$CLONE_DIR/$line" ]
       then
         cp -ra "$CLONE_DIR/$line" "$TEMP_DIR/$line"
         echo "[+] Preserve file $line located, and copied to tmp dir"
@@ -119,7 +119,7 @@ then
 	cat < "$DO_NOT_DELETE_LIST_FILE" | while read -r line; do # 'line' is the variable name
     if [ -n "$line" ]
     then
-      if [ -f "$TEMP_DIR/$line" ]
+      if [ -e "$TEMP_DIR/$line" ]
       then
         echo "[+] Copying $line to TMP"
         cp -ra "$TEMP_DIR/$line" "$CLONE_DIR/$line"
