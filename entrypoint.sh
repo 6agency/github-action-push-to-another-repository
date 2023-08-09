@@ -17,6 +17,8 @@ COMMIT_MESSAGE="${10}"
 TARGET_DIRECTORY="${11}"
 DO_NOT_DELETE_LIST_FILE="${12}"
 CREATE_TARGET_BRANCH_IF_NEEDED="${13}"
+COMMIT_NAME="${14}"
+COMMIT_EMAIL="${15}"
 
 if [ -z "$DESTINATION_REPOSITORY_USERNAME" ]
 then
@@ -69,6 +71,16 @@ echo "[+] Cloning destination git repository $DESTINATION_REPOSITORY_NAME"
 # Setup git
 git config --global user.email "$USER_EMAIL"
 git config --global user.name "$USER_NAME"
+
+if [ -z "$COMMIT_NAME" ]
+then
+	COMMIT_NAME="$USER_NAME"
+fi
+
+if [ -z "$COMMIT_EMAIL" ]
+then
+	COMMIT_EMAIL="$USER_EMAIL"
+fi
 
 # workaround for https://github.com/cpina/github-action-push-to-another-repository/issues/103
 git config --global http.version HTTP/1.1
@@ -197,7 +209,7 @@ git status
 
 echo "[+] git diff-index:"
 # git diff-index : to avoid doing the git commit failing if there are no changes to be commit
-git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE"
+git diff-index --quiet HEAD || git commit --author="$COMMIT_NAME <$COMMIT_EMAIL>" --message "$COMMIT_MESSAGE"
 
 echo "[+] Pushing git commit"
 # --set-upstream: sets de branch when pushing to a branch that does not exist
