@@ -58,7 +58,14 @@ inputs:
       [Optional] create target branch if not exist. Defaults to `false`
     default: false
     required: false
-
+  commit-name:
+    description: '[Optional] Override the commit name (if required, defaults to config)'
+    required: false
+    default: ''
+  commit-email:
+    description: '[Optional] Override the commit name (if required, defaults to config)'
+    required: false
+    default: ''
 runs:
   using: docker
   image: Dockerfile
@@ -76,6 +83,8 @@ runs:
     - '${{ inputs.target-directory }}'
     - '${{ inputs.do-not-delete-list-file }}'
     - '${{ inputs.create-target-branch-if-needed }}'
+    - '${{ inputs.commit-name }}'
+    - '${{ inputs.commit-email }}'
 branding:
   icon: git-commit
   color: green
