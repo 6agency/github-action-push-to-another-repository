@@ -159,6 +159,14 @@ then
     then
       if [ -e "$TEMP_DIR/$line" ]
       then
+        DIRPATH="$(dirname "${CLONE_DIR}/${line}")"
+        if [ -e "$DIRPATH" ]
+        then
+          echo "[+] Write to path found, moving to copy"
+        else
+          echo "[+] Write to path missing, creating dir $DIRPATH"
+          mkdir -p "${DIRPATH}"
+        fi
         echo "[+] Copying $line to TMP"
         cp -ra "$TEMP_DIR/$line" "$CLONE_DIR/$line"
       fi
