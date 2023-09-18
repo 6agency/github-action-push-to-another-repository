@@ -119,7 +119,7 @@ then
     then
       if [ -e "$CLONE_DIR/$line" ]
       then
-        DIRPATH="$(dirname "${$TEMP_DIR/$line}")"
+        DIRPATH="$(dirname "${TEMP_DIR}/${line}")"
         if [ -e "$DIRPATH" ]
         then
           echo "[+] Write to path found, moving to copy"
