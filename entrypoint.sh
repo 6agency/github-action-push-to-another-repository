@@ -125,7 +125,7 @@ then
           echo "[+] Write to path found, moving to copy"
         else
           echo "[+] Write to path missing, creating dir $DIRPATH"
-          mkdir -p DIRPATH
+          mkdir -p "${DIRPATH}"
         fi
         cp -ra "$CLONE_DIR/$line" "$TEMP_DIR/$line"
         echo "[+] Preserve file $line located, and copied to tmp dir"
